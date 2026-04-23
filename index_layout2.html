@@ -17,10 +17,10 @@ navbar_title: Home (Layout 2)
 {% endif %}
 
 {% if site.data.display.homepage.show_selected_publications %}
-    {% assign pubs = site.publications | sort: "date" | reverse | where: "selected", true %}
+    {% assign pubs = site.publications | sort: "date" | reverse %}
     {% 
         include widgets/publication_card.html 
         publications=pubs
-        title='<i class="fas fa-star"></i> Selected Publications'
+        title='<i class="fas fa-book"></i> Publications'
     %}
 {% endif %}

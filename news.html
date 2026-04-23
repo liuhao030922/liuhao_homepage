@@ -1,0 +1,22 @@
+---
+layout: default
+title : News
+navbar_title: News
+---
+
+{% assign count_news = site.news | size %}
+
+<div class="row">
+    <div class="col-12">
+        {% if count_news > 0 %}
+            {% include widgets/news_card.html limit=count_news %}
+        {% else %}
+        <div class="card border-0 shadow-sm bg-white content-card">
+            <div class="card-body p-4">
+                <h3 class="mb-2">News</h3>
+                <p class="mb-0">No news posts yet.</p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>

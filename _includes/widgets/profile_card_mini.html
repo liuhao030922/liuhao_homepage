@@ -1,7 +1,6 @@
-<div class="row sticky-top" style="top: 80px">
-    <div class="col">
-        <div class="card border-0 shadow-sm bg-white">
-            <div class="card-body px-4 pt-4 pb-3">
+<div class="profile-mini-sticky">
+    <div class="card border-0 shadow-sm bg-white profile-mini-card">
+        <div class="card-body px-4 pt-4 pb-3">
                 <div class="row">
                     <div class="col">
                         {% if site.data.profile.portrait_url %}
@@ -9,32 +8,37 @@
                         <div class="figure d-none d-md-block">
                             <img 
                                 src="{{ site.data.profile.portrait_url | relative_url }}" 
-                                class="figure-img img-fluid" 
+                                class="figure-img img-fluid profile-mini-avatar"
+                                alt="{{ site.data.profile.primary_name }} portrait"
                                 data-toggle="tooltip" 
                                 data-placement="top" 
                                 title="{{ site.data.profile.portrait_caption }}">
                         </div>
                         <div class="mb-3 d-md-none text-center">
-                            <img src="{{ site.data.profile.portrait_url | relative_url }}" class="rounded-circle" style="max-width: 50%;" alt="Portrait">
+                            <img src="{{ site.data.profile.portrait_url | relative_url }}" class="rounded-circle profile-mini-avatar-mobile" style="max-width: 50%;" alt="Portrait">
                         </div>
                         {% endif %}
                     </div>
                 </div>
-                <div class="row">
+                <div class="row profile-mini-name">
                     <div class="col text-center h4">
                         {{ site.data.profile.primary_name }}
                     </div>
                 </div>
 
-                <div class="row small">
+                <div class="row small profile-mini-positions">
                     <div class="col text-center">
                         {% for position in site.data.profile.positions %}
+                        {% if forloop.first %}
+                        <span class="profile-position-primary">{{ position.name }}</span><br/>
+                        {% else %}
                         {{ position.name }}<br/>
+                        {% endif %}
                         {% endfor %}
                     </div>
                 </div>
 
-                <div class="row small">
+                <div class="row small profile-mini-email">
                     <div class="col text-center">
                         <a class="email-text" href="mailto:{{ site.data.profile.email | encode_email }}">
                             {{ site.data.profile.email | replace: "@", "(at)" }}
@@ -42,51 +46,70 @@
                     </div>
                 </div>
 
-                <div class="row pt-2">
+                {%- assign gscholar_url = nil -%}
+                {% if site.data.profile.gscholar %}
+                {%- if site.data.profile.gscholar contains 'scholar.google' -%}
+                {%- assign gscholar_url = site.data.profile.gscholar -%}
+                {%- else -%}
+                {%- assign gscholar_url = 'https://scholar.google.com/citations?user=' | append: site.data.profile.gscholar -%}
+                {%- endif -%}
+                {% endif %}
+
+                <div class="row pt-2 profile-mini-social">
                     <div class="col text-center h4">
-                        {% if site.data.profile.gscholar %}
-                        {%- if site.data.profile.gscholar contains 'scholar.google' -%}
-                        {%- assign gscholar_url = site.data.profile.gscholar -%}
-                        {%- else -%}
-                        {%- assign gscholar_url = 'https://scholar.google.com/citations?user=' | append: site.data.profile.gscholar -%}
-                        {%- endif -%}
-                        <a class="px-1 no-break" target="_blank" href="{{ gscholar_url }}">
+                        {% if gscholar_url %}
+                        <a class="px-1 no-break profile-social-link" target="_blank" href="{{ gscholar_url }}">
                             <i class="fab fa-google-scholar"></i>
                         </a>
                         {% endif %}
                         
                         {% if site.data.profile.github %}
-                        <a class="px-1 no-break" target="_blank" href="https://github.com/{{ site.data.profile.github }}">
+                        {%- if site.data.profile.github contains 'github.com' -%}
+                        {%- assign github_url = site.data.profile.github -%}
+                        {%- else -%}
+                        {%- assign github_url = 'https://github.com/' | append: site.data.profile.github -%}
+                        {%- endif -%}
+                        <a class="px-1 no-break profile-social-link" target="_blank" href="{{ github_url }}">
                             <i class="fab fa-github"></i>
                         </a>
                         {% endif %}
 
                         {% if site.data.profile.wechat_qrcode %}
-                        <a class="px-1 no-break" data-toggle="modal" data-target="#modal-wechat">
+                        <a class="px-1 no-break profile-social-link" data-toggle="modal" data-target="#modal-wechat">
                             <i class="fab fa-weixin"></i>
                         </a>
                         {% endif %}
 
                         {% if site.data.profile.twitter %}
-                        <a class="px-1 no-break" target="_blank" href="https://twitter.com/{{ site.data.profile.twitter }}">
+                        <a class="px-1 no-break profile-social-link" target="_blank" href="https://twitter.com/{{ site.data.profile.twitter }}">
                             <i class="fab fa-twitter"></i>
                         </a>
                         {% endif %}
 
                         {% if site.data.profile.linkedin %}
-                        <a class="px-1 no-break" target="_blank" href="https://www.linkedin.com/in/{{ site.data.profile.linkedin }}">
+                        {%- if site.data.profile.linkedin contains 'linkedin.com' -%}
+                        {%- assign linkedin_url = site.data.profile.linkedin -%}
+                        {%- else -%}
+                        {%- assign linkedin_url = 'https://www.linkedin.com/in/' | append: site.data.profile.linkedin -%}
+                        {%- endif -%}
+                        <a class="px-1 no-break profile-social-link" target="_blank" href="{{ linkedin_url }}">
                             <i class="fab fa-linkedin"></i>
                         </a>
                         {% endif %}
 
                         {% if site.data.profile.orcid %}
-                        <a class="px-1 no-break" target="_blank" href="https://orcid.org/{{ site.data.profile.orcid }}">
+                        <a class="px-1 no-break profile-social-link" target="_blank" href="https://orcid.org/{{ site.data.profile.orcid }}">
                             <i class="fab fa-orcid"></i>
+                        </a>
+                        {% endif %}
+                        
+                        {% if site.data.profile.cv_link %}
+                        <a class="px-1 no-break profile-social-link" target="_blank" href="{{ site.data.profile.cv_link | relative_url }}">
+                            <i class="fas fa-file-alt"></i>
                         </a>
                         {% endif %}
                     </div>
                 </div>
-            </div>
         </div>
     </div>
 </div>
