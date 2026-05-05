@@ -1,6 +1,6 @@
 primary_name: "Hao Liu"
 secondary_name: "刘好"
-navbar_name: "Welcome, Explorer!"
+navbar_name: "Hao Liu's homepage"
 
 positions:
 - name: Computer Science Ph.D. Student
@@ -9,7 +9,7 @@ positions:
 
 email: "hliu232@uic.edu"
 cv_link: /assets/files/Hao_Liu_CV.pdf
-gscholar: "https://scholar.google.com/scholar?q=Hao+Liu+UIC+multi-robot+systems"
+gscholar: null
 github: "https://github.com/liuhao030922"
 # twitter: your_twitter_id  # Do not include the '@' symbol
 # wechat_qrcode: /assets/images/etc/wechat.jpg
