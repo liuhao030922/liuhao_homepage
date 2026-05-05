@@ -21,7 +21,7 @@ linkedin: "https://www.linkedin.com/in/hao-liu-391614332/"
 short_bio_text_justify: false
 short_bio: >-
   <p>
-    <span id="about-greeting-label">Good morning, explorer</span>! I am Hao Liu (刘好 in Chinese), a first-year Ph.D. student in Computer Science at the
+    I am Hao Liu (刘好 in Chinese), a first-year Ph.D. student in Computer Science at the
     <a href="https://cs.uic.edu/" target="_blank">University of Illinois Chicago</a>, luckily advised by
     <a href="https://cs.uic.edu/profiles/luo-wenhao/" target="_blank">Prof. Wenhao Luo</a>. I received my bachelor's degree in Automation from
     <a href="https://www.scu.edu.cn/" target="_blank">Sichuan University</a> in 2025.
@@ -42,6 +42,26 @@ short_bio: >-
 portrait_url: /assets/images/photos/portrait.jpg
 portrait_caption: >-
   Add a photo credit here (optional, comment out to hide).
+
+education:
+- school: University of Illinois Chicago
+  logos:
+    - /assets/images/education/uic.png
+  detail: Department of Computer Science
+  program: Ph.D. Student
+  date: Sep. 2025 - Present
+- school: Sichuan University
+  logos:
+    - /assets/images/education/sichuan.png
+  detail: College of Electrical Engineering
+  program: Bachelor's Degree in Engineering
+  date: Sep. 2021 - Jun. 2025
+- school: Khalifa University
+  logos:
+    - /assets/images/education/khalifa.png
+  detail: Exchange Semester
+  program: Visiting Student
+  date: Fall 2024
 
 
 

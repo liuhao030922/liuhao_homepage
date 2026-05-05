@@ -6,11 +6,19 @@ navbar_title: Publications
 
 <div class="row">
     <div class="col-12">
-        <div class="card border-0 shadow-sm bg-white content-card">
-            <div class="card-body p-4">
-                <h3 class="mb-2">Publications</h3>
-                <p class="mb-0">Publication content is currently hidden.</p>
+        <div class="my-3 p-0 bg-white shadow-sm rounded-xl content-card publication-card publication-list-page">
+            <h6 class="border-bottom border-gray p-3 mb-0">
+                Publications
+            </h6>
+            {% assign pubs = site.publications | where: "selected", true | sort: "date" | reverse %}
+            {% for item in pubs %}
+                {% include widgets/publication_item.html item=item hide_bottom_border=forloop.last %}
+            {% endfor %}
+            {% if pubs.size == 0 %}
+            <div class="p-4">
+                <p class="mb-0 text-muted">No publications yet.</p>
             </div>
+            {% endif %}
         </div>
     </div>
 </div>

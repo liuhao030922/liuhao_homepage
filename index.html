@@ -30,51 +30,15 @@ navbar_title: Home
         {% endif %}
         {% endif %}
 
+        {% assign pubs = site.publications | where: "selected", true | sort: "date" | reverse %}
+        {% if pubs.size > 0 %}
         <div>
-            <div class="my-3 p-0 bg-white shadow-sm rounded-xl content-card publication-card publication-empty-card">
-                <h6 class="border-bottom border-gray p-3 mb-0"><i class="fas fa-book"></i> Publications</h6>
-                <div class="publication-empty-body px-4 py-3">
-                    <ul class="news-plain-list mb-0">
-                        <li><span class="news-date-tag">[2026]</span> Safe Coordination for Multi-Robot Systems, submitted to ICRA.</li>
-                        <li><span class="news-date-tag">[2025]</span> Control-Theoretic Planning for Multi-Agent Navigation.</li>
-                        <li><span class="news-date-tag">[2025]</span> Learning-Based Barrier Functions for Autonomous Robotics.</li>
-                        <li><span class="news-date-tag">[2024]</span> Risk-Aware Motion Control with Safety Guarantees.</li>
-                        <li><span class="news-date-tag">[2024]</span> Communication-Aware Multi-Robot Collaboration in Dynamic Environments.</li>
-                        <li><span class="news-date-tag">[2023]</span> Distributed Coordination under Uncertain Sensing and Delays.</li>
-                        <li><span class="news-date-tag">[2023]</span> Foundations of Robust Control for Team Robotics.</li>
-                        <li><span class="news-date-tag">[2022]</span> Publication Prototype 01: Safety-Constrained Policy Learning for Robot Teams.</li>
-                        <li><span class="news-date-tag">[2022]</span> Publication Prototype 02: Decentralized Task Allocation with Communication Limits.</li>
-                        <li><span class="news-date-tag">[2022]</span> Publication Prototype 03: Barrier-Certificate Methods for Swarm Navigation.</li>
-                        <li><span class="news-date-tag">[2021]</span> Publication Prototype 04: Predictive Control for Cooperative Mobile Manipulation.</li>
-                        <li><span class="news-date-tag">[2021]</span> Publication Prototype 05: Data-Efficient Safe Exploration in Multi-Robot Systems.</li>
-                        <li><span class="news-date-tag">[2021]</span> Publication Prototype 06: Robust Formation Tracking with Input Constraints.</li>
-                        <li><span class="news-date-tag">[2020]</span> Publication Prototype 07: Distributed Estimation under Packet Drops.</li>
-                        <li><span class="news-date-tag">[2020]</span> Publication Prototype 08: Graph-Based Coordination for Heterogeneous Robots.</li>
-                        <li><span class="news-date-tag">[2020]</span> Publication Prototype 09: Risk-Aware Replanning in Dynamic Environments.</li>
-                        <li><span class="news-date-tag">[2019]</span> Publication Prototype 10: Consensus Control with Time-Varying Topologies.</li>
-                        <li><span class="news-date-tag">[2019]</span> Publication Prototype 11: Learning-Corrective MPC for Autonomous Ground Robots.</li>
-                        <li><span class="news-date-tag">[2019]</span> Publication Prototype 12: Formal Safety Verification for Multi-Agent Motion.</li>
-                        <li><span class="news-date-tag">[2018]</span> Publication Prototype 13: Scalable Multi-Robot Coverage with Uncertain Maps.</li>
-                        <li><span class="news-date-tag">[2018]</span> Publication Prototype 14: Adaptive Control for Cooperative Payload Transport.</li>
-                        <li><span class="news-date-tag">[2018]</span> Publication Prototype 15: Leader-Follower Stability under Delayed Sensing.</li>
-                        <li><span class="news-date-tag">[2017]</span> Publication Prototype 16: Learning Barrier Functions from Demonstrations.</li>
-                        <li><span class="news-date-tag">[2017]</span> Publication Prototype 17: Communication Scheduling for Robot Teaming.</li>
-                        <li><span class="news-date-tag">[2017]</span> Publication Prototype 18: Event-Triggered Control for Energy-Constrained Robots.</li>
-                        <li><span class="news-date-tag">[2016]</span> Publication Prototype 19: Safe Reinforcement Learning with Control Priors.</li>
-                        <li><span class="news-date-tag">[2016]</span> Publication Prototype 20: Distributed Obstacle Avoidance via Potential Fields.</li>
-                        <li><span class="news-date-tag">[2016]</span> Publication Prototype 21: Cooperative Localization with Relative Measurements.</li>
-                        <li><span class="news-date-tag">[2015]</span> Publication Prototype 22: Stability Analysis for Switched Multi-Robot Dynamics.</li>
-                        <li><span class="news-date-tag">[2015]</span> Publication Prototype 23: Control Allocation for Redundant Mobile Platforms.</li>
-                        <li><span class="news-date-tag">[2015]</span> Publication Prototype 24: Resilient Coordination under Adversarial Disturbances.</li>
-                        <li><span class="news-date-tag">[2014]</span> Publication Prototype 25: Trajectory Optimization with Collision Guarantees.</li>
-                        <li><span class="news-date-tag">[2014]</span> Publication Prototype 26: Multi-Agent Reachability for Safety-Critical Planning.</li>
-                        <li><span class="news-date-tag">[2014]</span> Publication Prototype 27: Nonlinear Control for Differential-Drive Fleets.</li>
-                        <li><span class="news-date-tag">[2013]</span> Publication Prototype 28: Robust Cooperative Exploration in Unknown Terrains.</li>
-                        <li><span class="news-date-tag">[2013]</span> Publication Prototype 29: Topology-Aware Routing for Robot Communications.</li>
-                        <li><span class="news-date-tag">[2013]</span> Publication Prototype 30: Uncertainty-Bounded Coordination with Shared Maps.</li>
-                    </ul>
-                </div>
-            </div>
+            {% include widgets/publication_card.html publications=pubs limit=6 title='Publications' %}
+        </div>
+        {% endif %}
+
+        <div>
+            {% include widgets/education_card.html %}
         </div>
     </div>
 </div>

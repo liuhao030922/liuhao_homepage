@@ -1,0 +1,32 @@
+{% assign education_items = site.data.profile.education %}
+{% if education_items and education_items.size > 0 %}
+<div class="my-3 bg-white shadow-sm rounded-xl content-card education-card">
+    <h6 class="p-3 mb-0 border-bottom border-gray">Education</h6>
+    <div class="px-3 py-2">
+        {% for item in education_items %}
+        <div class="education-item {% unless forloop.last %}border-bottom border-gray{% endunless %}">
+            <div class="education-head-row">
+                <div class="education-school-wrap">
+                    <div class="education-logos">
+                        {% if item.logos and item.logos.size > 0 %}
+                            {% for logo in item.logos %}
+                            <img src="{{ logo | relative_url }}" alt="{{ item.school | default: item.name }} logo" class="education-logo-img">
+                            {% endfor %}
+                        {% elsif item.logo %}
+                            <img src="{{ item.logo | relative_url }}" alt="{{ item.school | default: item.name }} logo" class="education-logo-img">
+                        {% endif %}
+                    </div>
+                    <div class="education-school">{{ item.school | default: item.name }}</div>
+                </div>
+                <div class="education-date"><em>{{ item.date }}</em></div>
+            </div>
+            <div class="education-detail">
+                {% if item.detail %}{{ item.detail }}{% endif %}
+                {% if item.detail and (item.program or item.position) %} · {% endif %}
+                {% if item.program or item.position %}<span class="education-program-inline">{{ item.program | default: item.position }}</span>{% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}

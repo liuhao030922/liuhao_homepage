@@ -1,4 +1,5 @@
 {%- assign authors = include.authors -%}
+{%- assign profile_name = site.data.profile.primary_name | default: "" | strip | downcase -%}
 {%- assign has_eq_contrib = false -%}
 {%- assign has_corresponding = false -%}
 
@@ -31,7 +32,14 @@
         {%- assign name = key -%}
     {%- endif -%}
 
-    {%- if info['bold'] == true -%}
+    {%- assign normalized_key = key | strip | downcase -%}
+    {%- assign normalized_name = name | strip | downcase -%}
+    {%- assign is_profile_author = false -%}
+    {%- if profile_name != "" and (normalized_key == profile_name or normalized_name == profile_name) -%}
+        {%- assign is_profile_author = true -%}
+    {%- endif -%}
+
+    {%- if info['bold'] == true or is_profile_author -%}
         {%- assign display_name = name | append: mark | prepend: "<strong>" | append: "</strong>" -%}
     {%- else -%}
         {%- assign display_name = name | append: mark -%}
