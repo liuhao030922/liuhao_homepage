@@ -1,0 +1,67 @@
+---
+layout: default
+title : Homepage
+navbar_title: Home
+---
+
+{% assign primary_position = site.data.profile.positions | first %}
+
+<section class="hero-panel reveal-on-load">
+    <div class="hero-panel__inner">
+        <p class="hero-eyebrow">Personal Site</p>
+        <h1 class="hero-title">
+            {{ site.data.profile.primary_name }}
+            {% if site.data.profile.secondary_name and site.data.profile.secondary_name != "" %}
+            <span>{{ site.data.profile.secondary_name }}</span>
+            {% endif %}
+        </h1>
+        {% if primary_position %}
+        <p class="hero-role">{{ primary_position.name }}</p>
+        {% endif %}
+        <p class="hero-summary">{{ site.data.profile.short_bio | strip_html | truncate: 220 }}</p>
+        <div class="hero-actions">
+            <a class="btn btn-hero-primary" href="{{ '/publications' | relative_url }}">View Publications</a>
+            <a class="btn btn-hero-secondary" href="{{ '/showcase' | relative_url }}">Browse Showcase</a>
+            {% if site.data.profile.cv_link %}
+            <a class="btn btn-hero-link" target="_blank" href="{{ site.data.profile.cv_link | relative_url }}">
+                <i class="fas fa-file-alt"></i> CV
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<div class="row home-grid">
+    <div class="col-lg-3 col-md-4">
+        <div class="reveal-on-load reveal-delay-1">
+            {% include widgets/profile_card_mini.html %}
+        </div>
+    </div>
+    <div class="col-lg-9 col-md-8">
+        <div class="reveal-on-load reveal-delay-1">
+            {% include widgets/profile_card_bio_only.html %}
+        </div>
+
+        {% if site.data.display.homepage.show_experience %}
+        <div class="reveal-on-load reveal-delay-2">
+            {% include widgets/experience_card.html %}
+        </div>
+        {% endif %}
+
+        {% if site.data.display.homepage.show_news %}
+        {% assign count_news = site.news | size %}
+        {% if count_news > 0 %}
+        <div class="reveal-on-load reveal-delay-2">
+            {% include widgets/news_card.html limit=site.data.display.homepage.num_news %}
+        </div>
+        {% endif %}
+        {% endif %}
+
+        {% if site.data.display.homepage.show_selected_publications %}
+        {% assign pubs = site.publications | sort: "date" | reverse | where: "selected", true %}
+        <div class="reveal-on-load reveal-delay-3">
+            {% include widgets/publication_card.html publications=pubs title='<i class="fas fa-star"></i> Selected Publications' %}
+        </div>
+        {% endif %}
+    </div>
+</div>

@@ -1,0 +1,7 @@
+---
+title: >-
+    I will present my recent work at
+    <a href="https://acc2026.a2c2.org/" target="_blank">ACC 2026</a>.
+    Late Breaking News.
+date: 2026-04-20 10:00:00 -0500
+---
